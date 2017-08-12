@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta charset="UTF-8">
+    <title>.mov to .mp4 Converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <style>
+      button.btn-primary {
+        background-color: #0064b1 !important;
+        color: white !important;
+      }
+      button.btn-primary:hover {
+        background-color: #00477e !important;
+      }
+      #progress, #success, #errors {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="my-4">Convert .mov to .mp4</h1>
+      <div class="my-3 input-group">
+        <button id="select-input" class="btn btn-primary input-group-addon">Choose</button>
+        <input type="text" id="input-file" class="form-control" disabled placeholder="Input file">
+      </div>
+      <div class="my-3 input-group">
+        <button id="select-output" class="btn btn-primary input-group-addon">Choose</button>
+        <input type="text" id="output-file" class="form-control" disabled placeholder="Output file">
+      </div>
+      <div class="my-5 text-center">
+        <button id="convert" class="btn btn-primary">Convert</button>
+      </div>
+      <div id="progress" class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+      </div>
+      <div id="success" class="my-3 text-center text-success"></div>
+      <div id="errors" class="my-3 text-center text-danger"></div>
+    </div>
+  </body>
+  <script>
+    require('./renderer');
+  </script>
+</html>
