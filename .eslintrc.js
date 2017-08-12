@@ -7,5 +7,8 @@ module.exports = {
     'no-console': 'off',
     'no-return-assign': ['error', 'except-parens']
   },
-  globals: { document: true }
+  globals: {
+    document: true,
+    window: true
+  }
 };

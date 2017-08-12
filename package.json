@@ -3,9 +3,12 @@
   "productName": "MOVtoMP4",
   "version": "1.0.0",
   "description": "Simple app to convert .mov to .mp4 files",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
-    "lint": "eslint --config .eslintrc.js .",
+    "clean": "rm -rf dist",
+    "dist": "electron-builder",
+    "lint": "eslint --config .eslintrc.js src",
+    "pack": "electron-builder --dir",
     "start": "electron ."
   },
   "repository": "https://github.com/mblink/mov-to-mp4-converter",
