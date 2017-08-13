@@ -1,10 +1,12 @@
 const { dialog } = require('electron').remote; // eslint-disable-line import/no-extraneous-dependencies
 const ffmpeg = require('./ffmpeg');
+const { timeStrToSec } = require('./util');
 
 document.addEventListener('DOMContentLoaded', () => {
   const inputFile = document.getElementById('input-file');
   const outputFile = document.getElementById('output-file');
   const progress = document.getElementById('progress');
+  const progressBar = progress.querySelector('.progress-bar');
   const success = document.getElementById('success');
   const errors = document.getElementById('errors');
 
@@ -33,8 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('convert').addEventListener('click', () => {
     hideAll();
+    progressBar.style.width = '0%';
     progress.style.display = 'block';
-    ffmpeg.convert(inputFile.value, outputFile.value)
+    ffmpeg.getDuration(inputFile.value)
+      .then(duration =>
+        ffmpeg.convert(inputFile.value, outputFile.value)
+          .progress(prog => (progressBar.style.width = `${(timeStrToSec(prog.time) / duration) * 100}%`)))
       .then(() => {
         hideAll();
         success.innerText = 'Conversion complete';

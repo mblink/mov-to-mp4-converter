@@ -15,6 +15,10 @@
       #progress, #success, #errors {
         display: none;
       }
+      #progress .progress-bar {
+        width: 0%;
+        background-color: #0064b1 !important;
+      }
     </style>
   </head>
   <body>
@@ -32,7 +36,7 @@
         <button id="convert" class="btn btn-primary">Convert</button>
       </div>
       <div id="progress" class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated"></div>
       </div>
       <div id="success" class="my-3 text-center text-success"></div>
       <div id="errors" class="my-3 text-center text-danger"></div>
