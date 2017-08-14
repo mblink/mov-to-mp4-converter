@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const success = document.getElementById('success');
   const errors = document.getElementById('errors');
 
-  const hideAll = () => [progress, success, errors].forEach(el =>
-    (el.style.display = 'none')); // eslint-disable-line no-param-reassign
+  const hideAll = () => [progress, success, errors].forEach(el => (el.style.display = 'none'));
 
   document.getElementById('select-input').addEventListener('click', () => {
     hideAll();

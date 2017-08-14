@@ -2,7 +2,6 @@ const { BrowserWindow } = require('electron'); // eslint-disable-line import/no-
 const electronLog = require('electron-log');
 const isDev = require('electron-is-dev');
 
-
 const log = (logFn, ...args) =>
   (typeof logFn === 'function'
     ? logFn('AUTO UPDATER:', ...args)
