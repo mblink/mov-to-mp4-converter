@@ -1,20 +1,14 @@
-const { BrowserWindow } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 const electronLog = require('electron-log');
 const isDev = require('electron-is-dev');
+const notifier = require('node-notifier');
+const path = require('path');
 
 const log = (logFn, ...args) =>
   (typeof logFn === 'function'
     ? logFn('AUTO UPDATER:', ...args)
     : electronLog.info('AUTO UPDATER:', logFn, ...args));
 
-const notify = (title, message) => {
-  const windows = BrowserWindow.getAllWindows();
-  if (windows.length === 0) {
-    log(electronLog.error, 'No browser windows found');
-  }
-
-  windows[0].webContents.send('notify', title, message);
-};
+const notify = (title, message) => notifier.notify({ title, message, icon: path.join(__dirname, 'icon.png') });
 
 module.exports = (autoUpdater) => {
   if (isDev) { return; }
