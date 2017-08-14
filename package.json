@@ -1,7 +1,7 @@
 {
   "name": "mov-to-mp4-converter",
   "productName": "MOVtoMP4",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Simple app to convert .mov to .mp4 files",
   "main": "src/main.js",
   "scripts": {
@@ -18,6 +18,7 @@
   "dependencies": {
     "electron-debug": "^1.4.0",
     "electron-is-dev": "^0.3.0",
+    "electron-log": "^2.2.7",
     "electron-updater": "^2.8.7",
     "ffmpeg-progress-stream": "^1.2.1",
     "ffmpeg-static": "^2.0.0",

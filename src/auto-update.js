@@ -1,15 +1,17 @@
 const { BrowserWindow } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
+const electronLog = require('electron-log');
 const isDev = require('electron-is-dev');
+
 
 const log = (logFn, ...args) =>
   (typeof logFn === 'function'
     ? logFn('AUTO UPDATER:', ...args)
-    : console.log('AUTO UPDATER:', logFn, ...args));
+    : electronLog.info('AUTO UPDATER:', logFn, ...args));
 
 const notify = (title, message) => {
   const windows = BrowserWindow.getAllWindows();
   if (windows.length === 0) {
-    log(console.error, 'No browser windows found');
+    log(electronLog.error, 'No browser windows found');
   }
 
   windows[0].webContents.send('notify', title, message);
@@ -18,10 +20,13 @@ const notify = (title, message) => {
 module.exports = (autoUpdater) => {
   if (isDev) { return; }
 
+  autoUpdater.logger = electronLog;
+  autoUpdater.logger.transports.file.level = 'info';
+
   autoUpdater.on('checking-for-update', () => log('Checking for update'));
   autoUpdater.on('update-available', info => log('Update available', info));
   autoUpdater.on('update-not-available', info => log('No update available', info));
-  autoUpdater.on('error', err => log(console.error, err));
+  autoUpdater.on('error', err => log(electronLog.error, err));
   autoUpdater.on('download-progress', progress =>
     log(`Download speed: ${progress.bytesPerSecond}
       Downloaded: ${progress.percent}% (${progress.transferred} / ${progress.total})`.replace(/^\s+/gm, '')));
