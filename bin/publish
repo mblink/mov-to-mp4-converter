@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ -f .env ]; then
+  source .env
+fi
+
+if [ -z "$GH_TOKEN" ]; then
+    echo 'You must set the GH_TOKEN environment variable.'
+    echo 'See README.md for more details.'
+    exit 1
+fi
+
+# This will build, package and upload the app to GitHub.
+$(npm bin)/electron-builder --mac --publish always

@@ -22,11 +22,22 @@ developer tools. When you change files, you can reload the app with `cmd-R`.
 
 ## Deployment
 
-[`electron-builder`](https://github.com/electron-userland/electron-builder) is configured and installed, so the app
-can be easily built for MacOS by running:
+To publish the app to GitHub as a new release, first set the `GH_TOKEN` environment variable to a GitHub access token
+that has the `repo` scope. If you need to generate a new access token, you can do so
+[here](https://github.com/settings/tokens/new). You can put this in a file called `.env`, like so:
 
-```bash
-$ npm run dist
+```
+GH_TOKEN=XXXXX
 ```
 
-You'll find compiled `.app`, `.zip`, and `.dmg` files in the `dist` directory.
+or export it on the command line:
+
+```bash
+$ export GH_TOKEN=XXXXX
+```
+
+Then to publish the app, run:
+
+```bash
+$ npm run publish
+```

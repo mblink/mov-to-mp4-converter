@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
+const { autoUpdater } = require('electron-updater');
+const autoUpdate = require('./auto-update');
 require('electron-debug')({ enabled: true });
 
 const path = require('path');
@@ -21,7 +23,10 @@ const createWindow = () => {
   });
 };
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow('index.html', { width: 600, height: 450 });
+  autoUpdate(autoUpdater);
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
