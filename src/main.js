@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
+const { app, BrowserWindow, Menu } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 const { autoUpdater } = require('electron-updater');
 const autoUpdate = require('./auto-update');
 require('electron-debug')({ enabled: true });
@@ -24,6 +24,14 @@ const createWindow = () => {
 };
 
 app.on('ready', () => {
+  const menu = Menu.buildFromTemplate([{
+    label: app.getName(),
+    submenu: [
+      { label: 'About', role: 'about' },
+      { label: 'Quit', accelerator: 'Command+Q', click: app.quit.bind(app) }
+    ]
+  }]);
+  Menu.setApplicationMenu(menu);
   createWindow('index.html', { width: 600, height: 450 });
   autoUpdate(autoUpdater);
 });
