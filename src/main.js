@@ -46,7 +46,13 @@ app.on('ready', () => {
         message: `A new version (v${update.version}) of the app has been downloaded and is ready for installation.` +
           "\n\nClick 'Install' to install now, or click 'Cancel' to install when you quit the app.",
         icon: path.join(__dirname, 'icon.png')
-      }, btnIdx => (btnIdx === 0 && autoUpdate.install(autoUpdater))))
+      }, (btnIdx) => {
+        if (btnIdx === 0) {
+          app.removeAllListeners('window-all-closed');
+          mainWindow.close();
+          setTimeout(() => autoUpdate.install(autoUpdater), 5);
+        }
+      }))
     .catch(err => log.warn('Not installing update:', err));
 });
 
