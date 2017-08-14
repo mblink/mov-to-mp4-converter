@@ -9,21 +9,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressBar = progress.querySelector('.progress-bar');
   const success = document.getElementById('success');
   const errors = document.getElementById('errors');
+  const dropzone = document.getElementById('dropzone');
 
   const hideAll = () => [progress, success, errors].forEach(el => (el.style.display = 'none'));
+
+  const setInput = (movPath) => {
+    inputFile.value = movPath;
+    outputFile.value = movPath.replace(/\.mov$/, '.mp4');
+  };
 
   document.getElementById('select-input').addEventListener('click', () => {
     hideAll();
     dialog.showOpenDialog({
       filters: [{ name: 'mov', extensions: ['mov'] }],
       properties: ['openFile', 'createDirectory']
-    }, (fileNames) => {
-      if (fileNames && fileNames.length === 1) {
-        inputFile.value = fileNames[0];
-        outputFile.value = fileNames[0].replace(/\.mov$/, '.mp4');
-      }
-    });
+    }, fileNames => fileNames && fileNames.length === 1 && setInput(fileNames[0]));
   });
+
+  document.addEventListener('dragover', e => e.preventDefault());
+  document.addEventListener('drop', e => e.preventDefault());
+  document.body.addEventListener('drop', e =>
+    e.dataTransfer.files.length === 1 && /\.mov$/.test(e.dataTransfer.files[0].path) &&
+      setInput(e.dataTransfer.files[0].path));
 
   document.getElementById('select-output').addEventListener('click', () => {
     hideAll();
