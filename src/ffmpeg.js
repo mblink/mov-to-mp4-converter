@@ -17,13 +17,14 @@ const ensureDivisibleBy2 = num => (num % 2 === 0 ? num : num - 1);
 
 module.exports = {
   getInfo(input, successCb, errorCb) {
-    runCmd(ffprobe, ['-i', input, '-show_entries', 'stream=width,height,duration', '-v', 'quiet'],
+    runCmd(ffprobe, ['-i', input, '-show_streams', '-v', 'quiet', '-print_format', 'json'],
       stdout => console.log('FFPROBE STDOUT:', `${stdout}`),
       stderr => console.log('FFPROBE STDERR:', `${stderr}`),
       (code, stdout) => {
         if (code === 0) {
-          const m = stdout[0].match(/^width=([^\n]+)$\n^height=([^\n]+)$\n^duration=([^\n]+)$/m);
-          successCb({ width: parseInt(m[1], 10), height: parseInt(m[2], 10), duration: parseFloat(m[3]) });
+          const ret = JSON.parse(stdout[0]).streams[0];
+          ret.duration = parseFloat(ret.duration);
+          successCb(ret);
         } else {
           errorCb();
         }
