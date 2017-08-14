@@ -22,22 +22,23 @@ developer tools. When you change files, you can reload the app with `cmd-R`.
 
 ## Deployment
 
-To publish the app to GitHub as a new release, first set the `GH_TOKEN` environment variable to a GitHub access token
-that has the `repo` scope. If you need to generate a new access token, you can do so
-[here](https://github.com/settings/tokens/new). You can put this in a file called `.env`, like so:
+To publish the app to GitHub as a new release, you need to do a few things:
 
-```
-GH_TOKEN=XXXXX
-```
+1. Create a 'Mac Developer' code signing identity by following the 'Creating Signing Identities' instructions here: https://goo.gl/9huSjR
+2. Set the `GH_TOKEN` environment variable to a GitHub access token that has the `repo` scope. If you need to generate a new access token, you can do so
+[here](https://github.com/settings/tokens/new).
+    1. You can put this in a file called `.env` like so:
+    ```
+    GH_TOKEN=XXXXX
+    ```
 
-or export it on the command line:
-
-```bash
-$ export GH_TOKEN=XXXXX
-```
-
-Then to publish the app, run:
-
+    2. Or you can export it on the command line:
+    ```bash
+    $ export GH_TOKEN=XXXXX
+    ```
+3. Run:
 ```bash
 $ npm run publish
 ```
+4. Go to [the releases page](https://github.com/mblink/mov-to-mp4-converter/releases) and publish the drafted
+release

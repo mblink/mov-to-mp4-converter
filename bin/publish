@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if ! security find-identity -v -p codesigning | grep 'Mac Developer'; then
+  echo "Couldn't find a 'Mac Developer' signing identity"
+  echo "Follow the 'Creating Signing Identities instructions here to create one: https://goo.gl/9huSjR"
+  exit 1
+fi
+
 if [ -f .env ]; then
   set -o allexport
   source .env
