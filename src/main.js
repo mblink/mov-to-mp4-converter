@@ -1,6 +1,8 @@
-const { app, BrowserWindow, Menu } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { app, BrowserWindow, dialog, Menu } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const autoUpdate = require('./auto-update');
+const log = require('electron-log');
 require('electron-debug')({ enabled: true });
 
 const path = require('path');
@@ -32,8 +34,20 @@ app.on('ready', () => {
     ]
   }]);
   Menu.setApplicationMenu(menu);
-  createWindow('index.html', { width: 600, height: 450 });
-  autoUpdate(autoUpdater);
+
+  createWindow();
+
+  autoUpdate.check(autoUpdater)
+    .then(update =>
+      dialog.showMessageBox(mainWindow, {
+        type: 'question',
+        buttons: ['Install', 'Cancel'],
+        title: 'Update available',
+        message: `A new version (v${update.version}) of the app has been downloaded and is ready for installation.` +
+          "\n\nClick 'Install' to install now, or click 'Cancel' to install when you quit the app.",
+        icon: path.join(__dirname, 'icon.png')
+      }, btnIdx => (btnIdx === 0 && autoUpdate.install(autoUpdater))))
+    .catch(err => log.warn('Not installing update:', err));
 });
 
 app.on('window-all-closed', () => {
