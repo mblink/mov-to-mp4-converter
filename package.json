@@ -1,7 +1,7 @@
 {
   "name": "mov-to-mp4-converter",
   "productName": "MOVtoMP4",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Simple app to convert .mov to .mp4 files",
   "main": "src/main.js",
   "scripts": {
