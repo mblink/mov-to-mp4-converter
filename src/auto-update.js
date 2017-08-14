@@ -1,6 +1,5 @@
 const electronLog = require('electron-log');
 const isDev = require('electron-is-dev');
-const path = require('path');
 
 const log = (logFn, ...args) =>
   (typeof logFn === 'function'

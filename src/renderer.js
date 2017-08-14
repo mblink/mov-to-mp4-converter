@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressBar = progress.querySelector('.progress-bar');
   const success = document.getElementById('success');
   const errors = document.getElementById('errors');
-  const dropzone = document.getElementById('dropzone');
 
   const hideAll = () => [progress, success, errors].forEach(el => (el.style.display = 'none'));
 
