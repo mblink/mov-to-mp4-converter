@@ -19,3 +19,5 @@ into your Applications. Right click on "MOVtoMP4" and click "Open".
 When prompted to allow the app to run, click "Open".
 
 <img width="400" src="https://user-images.githubusercontent.com/4718399/29284078-50c86570-80f7-11e7-9dfd-119c51668b16.png">
+
+The app will update automatically, so you should only need to follow these instructions again if you delete the app.
