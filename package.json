@@ -23,7 +23,6 @@
     "ffmpeg-progress-stream": "^1.2.1",
     "ffmpeg-static": "^2.0.0",
     "ffprobe-static": "^2.0.0",
-    "node-notifier": "^5.1.2",
     "progress-promise": "0.0.6"
   },
   "devDependencies": {

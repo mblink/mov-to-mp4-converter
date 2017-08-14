@@ -1,14 +1,11 @@
 const electronLog = require('electron-log');
 const isDev = require('electron-is-dev');
-const notifier = require('node-notifier');
 const path = require('path');
 
 const log = (logFn, ...args) =>
   (typeof logFn === 'function'
     ? logFn('AUTO UPDATER:', ...args)
     : electronLog.info('AUTO UPDATER:', logFn, ...args));
-
-const notify = (title, message) => notifier.notify({ title, message, icon: path.join(__dirname, 'icon.png') });
 
 module.exports = (autoUpdater) => {
   if (isDev) { return; }
@@ -25,7 +22,6 @@ module.exports = (autoUpdater) => {
       Downloaded: ${progress.percent}% (${progress.transferred} / ${progress.total})`.replace(/^\s+/gm, '')));
   autoUpdater.on('update-downloaded', (info) => {
     log('Update downloaded', info);
-    notify('Update available', `Version ${info.version} will be automatically installed on quit`);
   });
 
   autoUpdater.checkForUpdates();
