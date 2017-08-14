@@ -20,7 +20,7 @@ module.exports = {
   getInfo(input, successCb, errorCb) {
     ffprobe(input, { path: ffprobePath }, (err, info) => {
       if (err) {
-        errorCb();
+        errorCb(err);
       } else {
         const ret = info.streams[0];
         ret.duration = parseFloat(ret.duration);
