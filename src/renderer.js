@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressBar = progress.querySelector('.progress-bar');
   const success = document.getElementById('success');
   const errors = document.getElementById('errors');
+  const convert = document.getElementById('convert');
 
   const hideAll = () => [progress, success, errors].forEach(el => (el.style.display = 'none'));
 
@@ -37,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, fileName => fileName && (outputFile.value = fileName));
   });
 
-  document.getElementById('convert').addEventListener('click', () => {
+  convert.addEventListener('click', () => {
+    convert.disabled = true;
     hideAll();
     progressBar.style.width = '0%';
     progress.style.display = 'block';
@@ -47,15 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.innerText = `${Math.round(pct)}%`;
       })
       .then(() => {
-        hideAll();
         success.innerText = 'Conversion complete';
         success.style.display = 'block';
       })
       .catch((err) => {
         console.error('FFMPEG ERROR:', err);
-        hideAll();
         errors.innerText = 'Failed to convert file';
         errors.style.display = 'block';
+      })
+      .then(() => {
+        hideAll();
+        convert.disabled = false;
       });
   });
 });
