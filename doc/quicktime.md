@@ -1,5 +1,8 @@
 # Use with QuickTime
 
+*If you need to install the app, look at
+[the installation docs](https://github.com/mblink/mov-to-mp4-converter/blob/master/doc/installation.md).*
+
 To create a new screen recording with QuickTime and convert it to an .mp4 file using this app, follow these
 instructions.
 

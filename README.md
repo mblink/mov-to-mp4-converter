@@ -6,7 +6,7 @@ This is a simple Electron app that converts .mov files to .mp4 using ffmpeg.
 
 ## Install
 
-Check the [installation docs](https://github.com/mblink/blob/master/doc/installation.md) for installation
+Check [the installation docs](https://github.com/mblink/mov-to-mp4-converter/blob/master/doc/installation.md) for installation
 instructions.
 
 ## Development
