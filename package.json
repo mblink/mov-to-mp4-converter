@@ -7,10 +7,11 @@
   "scripts": {
     "clean": "rm -rf dist",
     "dist": "electron-builder",
-    "lint": "eslint --config .eslintrc.js src",
+    "lint": "eslint --config .eslintrc.js src test",
     "pack": "electron-builder --dir",
     "publish": "bin/publish",
-    "start": "electron ."
+    "start": "electron .",
+    "test": "mocha"
   },
   "repository": "https://github.com/mblink/mov-to-mp4-converter",
   "author": "BondLink <dev@bondlink.org>",
@@ -27,11 +28,16 @@
     "progress-promise": "0.0.6"
   },
   "devDependencies": {
+    "chai": "^4.1.1",
+    "dirty-chai": "^2.0.1",
     "electron": "~1.7.6",
     "electron-builder": "^19.22.1",
     "eslint": "^4.4.1",
     "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.7.0"
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.5.0",
+    "sinon": "^3.2.0",
+    "sinon-chai": "^2.13.0"
   },
   "build": {
     "appId": "com.bondlink.movToMp4",

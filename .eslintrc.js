@@ -1,5 +1,6 @@
 module.exports = {
   extends: 'airbnb/base',
+  env: { mocha: true },
   rules: {
     'comma-dangle': ['error', 'never'],
     'max-len': ['error', 117, 2],
@@ -10,6 +11,7 @@ module.exports = {
   },
   globals: {
     document: true,
+    expect: true,
     window: true
   }
 };
