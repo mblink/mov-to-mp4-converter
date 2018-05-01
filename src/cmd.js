@@ -1,7 +1,8 @@
+const log = require('electron-log');
 const { spawn } = require('child_process');
 
 module.exports = (bin, args, onStdout, onStderr, onClose, pipeStderr) => {
-  console.log('COMMAND:', bin, ...args);
+  log.info('COMMAND:', bin, ...args);
 
   const stdout = [];
   const stderr = [];

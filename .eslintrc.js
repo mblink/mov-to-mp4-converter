@@ -7,7 +7,9 @@ module.exports = {
     'no-confusing-arrow': ['error', { allowParens: true }],
     'no-console': 'off',
     'no-param-reassign': ['error', { props: false }],
-    'no-return-assign': ['error', 'except-parens']
+    'no-return-assign': ['error', 'except-parens'],
+    'object-curly-newline': 'off',
+    'prefer-promise-reject-errors': 'off'
   },
   globals: {
     document: true,
