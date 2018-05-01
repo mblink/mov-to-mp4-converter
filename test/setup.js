@@ -9,7 +9,7 @@ const utils = { match: sinon.match };
 const testFns = ['spy', 'stub', 'mock'];
 
 beforeEach(() => {
-  utils.sandbox = sinon.sandbox.create();
+  utils.sandbox = sinon.createSandbox();
   Object.assign(utils, ...testFns.map(fn => ({ [fn]: utils.sandbox[fn].bind(utils.sandbox) })));
 });
 
